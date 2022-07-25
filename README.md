@@ -67,7 +67,7 @@ docker run --name one-page -itd  \
 ### 管理模式截图
 <p align="center">
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin.png" width="45%" height="45%" alt="" />
-  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin.png-list" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-list.png" width="45%" height="45%" alt="" />
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-data.png" width="45%" height="45%" alt="" />
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-config.png" width="45%" height="45%" alt="" />
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-wechat.png" width="45%" height="45%" alt="" />
