@@ -10,6 +10,7 @@
 * 在管理模式中可以编辑 LOGO，菜单，板块，等相关信息。
 * 图片需上传至COS后复制地址即可。
 * 支持微信公众号访问分享
+* 生成静态文件。通过微信云托管访问
 
 ### 技术
 
@@ -59,6 +60,13 @@ docker run --name one-page -itd  \
 
 * 访问： http://127.0.0.1
 * 管理模式： http://127.0.0.1/?mode=admin
+* 生成静态文件： http://127.0.0.1/?mode=export ，根目录会生成 index.html
+
+* 复制3个文件到静态内容提供商，即可访问
+   * index.html
+   * asset/js/main.js
+   * asset/css/style.css
+
 
 ### 前台演示
 
@@ -71,6 +79,13 @@ docker run --name one-page -itd  \
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-data.png" width="45%" height="45%" alt="" />
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-config.png" width="45%" height="45%" alt="" />
   <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-wechat.png" width="45%" height="45%" alt="" />
+</p>
+
+### 微信云托管
+<p align="center">
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/wxcloud-step1.png" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/wxcloud-step2.png" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/wxcloud-step3.png" width="45%" height="45%" alt="" />
 </p>
 
 ### 官网
