@@ -2,38 +2,49 @@
 
 ### 前言
 
-基于PHP Yaf的MVC扩展框架搭建一页网页制作展示系统，支持微服务部署、可视化编辑、多模板，可快速生成一页网页。
+《一页网》是基于PHP Yaf的MVC扩展框架搭建一页网页制作展示系统，支持微服务部署、可视化编辑、多模板，可快速生成一页网页。
 
 ### 描述
 
-基本yaf的一款PHP快速开发框架
+* 模版使用Bootsrap5制作，目前为固定的几个板块。
+* 在管理模式中可以编辑 LOGO，菜单，板块，等相关信息。
+* 图片需上传至COS后复制地址即可。
+* 支持微信公众号访问分享
 
 ### 技术
 
-php yaf mysql
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-8892BF.svg)](http://www.php.net/)
+[![Yaf Version](https://img.shields.io/badge/Yaf-2.3.2-blue)](https://www.php.net/manual/zh/book.yaf.php)
+[![Mysql Version](https://img.shields.io/badge/mysql-8-red)](http://www.mysql.com/)
+[![Bootstrap Version](https://img.shields.io/badge/Bootstrap-5-blueviolet)](https://getbootstrap.com/)
 
 ### 模块目录
 
 * server，docker服务器配置文件
-* application，项目主要目录，开发主要在这里
 * conf，服务器配置
 * asset，js/css 文件
 * vendor，第三方插件
-
-* application/controllers/ 控制器
-* application/views/ 视图层
-* application/views/ 视图层
-* application/library/ 扩展库
+* application，项目主要目录，开发主要在这里
+   * application/controllers/ 控制器
+   * application/views/ 视图层
+   * application/views/ 视图层
+   * application/library/ 扩展库
 
 
 ### 安装
 
-* 全新编译
+* 获取源码
+```shell
+git clone https://gitee.com/hobbysh/one-page.git .
+```
+
+* 部署Docker环境
+   * 全新编译
 ```shell
 docker build -t hobbysh/one-page .
-
-* 直接部署
+```
+   * 镜像部署
+```shell
 docker run --name one-page -itd  \
     -v `pwd`/:/var/www/html \
     -v `pwd`/server/php/fpm/php.ini:/etc/php/8.1/fpm/php.ini \
@@ -46,14 +57,26 @@ docker run --name one-page -itd  \
 
 ### 使用
 
-* 访问 http://127.0.0.1
-* 管理模式 http://127.0.0.1/?mode=admin
+* 访问： http://127.0.0.1
+* 管理模式： http://127.0.0.1/?mode=admin
 
+### 前台演示
+
+* https://www.ohcard.cn/
+
+### 管理模式截图
+<p align="center">
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin.png" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin.png-list" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-data.png" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-config.png" width="45%" height="45%" alt="" />
+  <img src="https://onepage-1257029016.cos.ap-shanghai.myqcloud.com/screenshot/admin-wechat.png" width="45%" height="45%" alt="" />
+</p>
 
 ### 官网
 
-[一页网页](https://one-page.cc/)
-<https://one-page.cc/>
+[一页网](https://gitee.com/hobbysh/one-page)
+<https://gitee.com/hobbysh/one-page>
 
 ### 支持
 
