@@ -1,0 +1,180 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row card-title">
+      <div class="col">
+        <h5 class=""><?php echo $this->list['label'];?></h5>
+      </div>
+      <div class="col">
+       <div class="d-flex justify-content-end"><?php echo $this->html->tag('a',["type"=>"button","class"=>"btn btn-outline-secondary btn-sm ".@$this->list['add']['class'],"data-url"=>$this->url['prefix'].$this->list['add']['function']."/table/".$this->url['table']."/id/0"],[],"<i class='".$this->list['add']['icon']."'></i>");?></div>
+      </div>
+    </div>
+    
+    
+    <table class="table table-hover" >
+      <thead>
+        <tr>
+          <?php 
+          //var_dump($this->links);
+          foreach ($this->list['format'] as $k => $v) { 
+            ?>
+
+              <th class="col"><?php echo $v['label'];?></th>
+          <?php } ?>
+        </tr>
+      </thead>
+      <tbody <?php echo  ($this->list['sortable']['enable'])?('id="sortable" data-url="'.$this->url['prefix'].$this->list['sortable']['function']."/table/".$this->url['table'].'"'):'';?> >
+          <?php 
+          //var_dump($this->links);
+          foreach ($this->data as $k => $v) { 
+            //var_dump($v);
+            ?>
+          <tr draggable="true" data-id="<?php echo $v['id'];?>"  >
+            <?php 
+            //var_dump($this->links);
+            foreach ($this->list['format'] as $kk => $vv) {
+              //var_dump($vv);
+              if(isset($vv['field']) && $vv['type']=="text"){
+                echo   $this->html->tag('td',['class'=>'col '.@$vv['class']],(isset($vv['editable']) && $vv['editable'])?["type"=>$vv['type'],"pk"=>$v['id'],"name"=>$vv['field'],"url"=>$this->url['prefix']."updateField"."/table/".$this->url['table']]:[],$v[$vv['field']]);
+              }
+
+              if(isset($vv['field']) && $vv['type']=="select"){
+                echo   $this->html->tag('td',['class'=>'col '.@$vv['class']],(isset($vv['editable']) && $vv['editable'])?["type"=>$vv['type'],"pk"=>$v['id'],"name"=>$vv['field'],"url"=>$this->url['prefix']."updateField"."/table/".$this->url['table'],
+                    "source"=>"[]"
+                  ]:[],$v[$vv['field']]);
+              }
+
+              if(isset($vv['field']) && $vv['type']=="toggle"){
+                
+                $checkbox =  $this->html->tag('input',
+                  ['type'=>"checkbox",'class'=>"form-check-input",'name'=>"checkbox".$vv['field'].$kk],
+                  (isset($vv['editable']) && $vv['editable'])?["type"=>$vv['type'],"pk"=>$v['id'],"name"=>$vv['field'],"url"=>$this->url['prefix']."toggleField"."/table/".$this->url['table']]:[],
+                  $v[$vv['field']]
+                );
+                echo   $this->html->tag('td',['class'=>'col '.@$vv['class']],[],$checkbox);
+              }
+
+              if(isset($vv['buttons'])){
+                $buttons="";
+                foreach ($vv['buttons'] as $bk => $bv) {
+                 $buttons .= $this->html->tag('a',["type"=>"button","class"=>"btn btn-outline-secondary btn-sm ".@$bv['class'],"data-id"=>$v['id'],"data-url"=>$this->url['prefix'].$bv['function']."/table/".$this->url['table']."/id/".$v['id']],[],"<i class='".$bv['icon']."'></i>");
+                }
+                echo  $this->html->tag('td',["class"=>"col ".@$vv['class']],[],  $buttons);
+              }
+
+
+              
+            }
+            ?>
+          </tr>
+          <?php } ?>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+<script >
+
+
+    $(function(){
+
+          //buttons
+      $.fn.editableform.buttons = 
+        '<button type="submit" class="btn btn-primary btn-sm editable-submit">'+
+          '<i class="bi bi-check" aria-hidden="true"></i>'+
+        '</button>'+
+        '<button type="button" class="btn btn-outline-secondary btn-sm editable-cancel">'+
+          '<i class="bi bi-x" aria-hidden="true"></i>'+
+        '</button>';
+      
+      $('.editable').editable({
+        emptytext:"空",
+        mode:'inline'
+      });
+
+      $('.editablecheckbox').click(function(){
+        console.log($(this).data(),$(this).prop("checked"));
+        let data = {
+          id:$(this).data('pk'),
+          name:$(this).data('name'),
+          value:$(this).prop("checked")?"1":"0"
+        };
+        $.ajax({
+          url: $(this).data('url'),
+          data: JSON.stringify(data),
+          method: "post",
+          dataType: "json",
+          contentType: 'application/json',
+          success: function (data) {
+            console.log(data)
+            if (data.code == 0) {
+            } 
+          }
+        });
+      });
+
+      $('.redirect').click(function(){
+         console.log($(this).data());
+         window.location.href = $(this).data('url');
+      });
+
+
+      $('.remove').click(function(){
+        console.log($(this).data());
+        
+        //alert(JSON.stringify(table.bootstrapTable('getData')))
+        //alert('getRowByUniqueId: ' + JSON.stringify($table.bootstrapTable('getRowByUniqueId', 2)))
+
+        $.ajax({
+          url: $(this).data('url'),
+          data: JSON.stringify({id:$(this).data('id')}),
+          method: "post",
+          dataType: "json",
+          contentType: 'application/json',
+          success: function (data) {
+            console.log(data)
+            if (data.code == 0) {
+              var toastLiveExample = document.getElementById('liveToast')
+              var toast = new bootstrap.Toast(toastLiveExample)
+
+              toast.show()
+            } 
+          }
+        });
+
+        $(this).closest('tr').remove();
+        
+       });
+    });
+  
+    $('#sortable').sortable({
+      cursor: "move",
+      group: 'list',
+      animation: 200,
+      ghostClass: 'ghost',
+      onSort: reportActivity,
+    });
+
+    function reportActivity(e) {
+      console.log('The sort order has changed', $('#sortable').sortable("toArray"),$('#sortable').data('url'));
+      let data = $('#sortable').sortable("toArray");
+      
+      $.ajax({
+        url: $('#sortable').data('url'),
+        data: JSON.stringify(data),
+        method: "post",
+        dataType: "json",
+        contentType: 'application/json',
+        success: function (data) {
+          console.log(data)
+          if (data.code == 0) {
+            var toastLiveExample = document.getElementById('liveToast')
+            var toast = new bootstrap.Toast(toastLiveExample)
+
+            toast.show()
+          } 
+        }
+      });
+    };
+</script>

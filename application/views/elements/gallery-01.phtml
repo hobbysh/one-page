@@ -1,0 +1,26 @@
+<!-- ======= Testimonials Section ======= -->
+<section id="<?php echo $this->block['code'];?>" class="op-gallery-01 section-bg">
+  <div class="container" data-aos="fade-up">
+    <?php echo  $this->html->editButton(["type"=>"list-update-block","table"=>"blocks","id"=>$this->block['id']]);?>
+	<div class="section-title">
+		<?php echo  $this->html->tag('h2',[],["type"=>"text","pk"=>$this->block['id'],"name"=>"title","url"=>"updateField/table/blocks"],$this->block['title']);?>
+		 <?php echo  $this->html->tag('p',[],["type"=>"textarea","pk"=>$this->block['id'],"name"=>"description","url"=>"updateField/table/blocks"],$this->block['description']);?>
+	</div>
+	<?php 
+    echo  $this->html->editButton(["type"=>"list","table"=>"nodes","where"=>$this->block['id']]);?>
+	<div class="gallery-slider swiper" data-aos="fade-up" data-aos-delay="100">
+
+	  <div class="swiper-wrapper">
+		<?php
+		foreach($this->block['nodes'] as $k=>$v){?>
+			<div class="swiper-slide">
+			  <a href="<?php echo $v['link'];?>" class="gallery-lightbox" data-gall="gallery-carousel"><img src="<?php echo $v['img'];?>" class="img-fluid rounded" alt=""></a>
+			</div>
+		<?php }?>
+
+	  </div>
+	  <div class="swiper-pagination"></div>
+	</div>
+
+  </div>
+</section><!-- End Testimonials Section -->

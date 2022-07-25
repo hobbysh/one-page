@@ -1,0 +1,61 @@
+  <div class="fixed-top p-4"><?php 
+      	echo  $this->html->configsButton();
+      	echo  $this->html->wechatButton();
+   ?></div>
+  <!-- ======= Header ======= -->
+
+  <header id="header" class="fixed-top  header-transparent ">
+
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="logo d-flex ">
+		  <?php if($this->configs['logo_name']!=''){ echo  $this->html->tag('h1',[],[],$this->html->tag('a',["href"=>"./"],["type"=>"text","pk"=>'logo_name',"name"=>"logo_name","url"=>"updateConfig"], $this->configs['logo_name'])); } if($this->configs['logo']!=''){
+		   echo  $this->html->tag('a',["href"=>"./"],[], 
+		  	$this->html->tag('img',["src"=>$this->configs['logo'],"alt"=>$this->configs['logo_name'],"class"=>"img-fluid"],["type"=>"text","pk"=>'logo',"name"=>"logo","url"=>"updateConfig"]
+		  	, $this->configs['logo']));
+		  }?>
+      </div>
+      <nav id="navbar" class="navbar">
+      	<div> <?php 
+      	echo  $this->html->editButton(["type"=>"list","table"=>"links","where"=>"menu"]);?>
+			<ul id="menu">
+			<?php
+			foreach($this->menus as $k=>$v){
+				if(!isset($v["children"])){	?>
+				<li><a class="<?php 
+				echo (isset($v["class"]))?$v["class"]:"nav-link scrollto";
+				echo ($k==0)?" active":"";
+				?>" href="<?php echo $v["link"];?>"><?php echo $v["name"];?></a></li>
+				<?php }else{
+					?>
+				<li class="dropdown"><a href="#"><span><?php echo $v["name"];?></span> <i class="bi bi-chevron-down"></i></a>
+					<ul>
+						<?php
+						foreach($v["children"] as $kk=>$vv){
+							if(!isset($vv["children"])){
+							?>
+							<li><a href="<?php echo $vv["link"];?>"><?php echo $vv["name"];?></a></li>
+						<?php }else{
+							?>
+							<li class="dropdown"><a href="#"><span><?php echo $v["name"];?></span> <i class="bi bi-chevron-down"></i></a>
+							<ul>
+								<?php foreach($vv["children"] as $kkk=>$vvv){?>
+									<li><a href="<?php echo $vvv["link"];?>"><?php echo $vvv["name"];?></a></li>
+								<?php }	?>
+							</ul>
+							</li>
+						<?php }
+						}?>
+					</ul>
+				</li>
+			
+			<?php }
+			}
+			?>
+			 
+			</ul>
+		</div>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->

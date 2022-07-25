@@ -1,0 +1,62 @@
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+<div class="footer-top">
+  <div class="container">
+	<div class="row">
+	
+	  <div class="col-lg-3 col-md-6 footer-contact">
+	  	<?php echo  $this->html->tag('h3',[],["type"=>"text","pk"=>'logo_name',"name"=>"logo_name","url"=>"updateConfig"], $this->configs['logo_name']);?>
+		<p>
+		  <strong>Email:</strong> <?php echo  $this->html->tag('span',[],["type"=>"text","pk"=>'email',"name"=>"email","url"=>"updateConfig"], $this->configs['email']);?>
+		  <br>
+		</p>
+	  </div>
+
+	  <div class="col-lg-3 col-md-6 footer-links">
+		 <?php 
+      	echo  $this->html->editButton(["type"=>"list","table"=>"links","where"=>"link"]);?>
+		<h4>链接</h4>
+		<ul>
+		<?php
+		foreach($this->links as $k=>$v){?>
+			<li><i class="bx bx-chevron-right"></i> <a href="<?php echo $v['link'];?>" target="<?php echo $v['target'];?>"><?php echo $v['name'];?></a></li>
+		<?php }?>
+		</ul>
+	  </div>
+
+	  <div class="col-lg-3 col-md-6 footer-links">
+		  <?php 
+      	echo  $this->html->editButton(["type"=>"list","table"=>"links","where"=>"service"]);?>
+		<h4>服务</h4>
+		<ul>
+		<?php
+		foreach($this->services as $k=>$v){?>
+			<li><i class="bx bx-chevron-right"></i> <a href="<?php echo $v['link'];?>" target="<?php echo $v['target'];?>"><?php echo $v['name'];?></a></li>
+		<?php }?>
+		</ul>
+	  </div>
+
+	  <div class="col-lg-3 col-md-6 footer-links">
+		<h4>公众号</h4>
+			<figure class="figure">
+				<?php if($this->configs['officail_account_img']!=''){
+		   echo  $this->html->tag('a',["href"=>$this->configs['officail_account_img'],"class"=>"glightbox"],[], 
+		  	$this->html->tag('img',["src"=>$this->configs['officail_account_img'],"alt"=>$this->configs['officail_account_name'],"style"=>"width:120px;height:120px;","class"=>"img-fluid figure-img img-thumbnail"],["type"=>"text","pk"=>'officail_account_img',"name"=>"officail_account_img","url"=>"updateConfig"]
+		  	, $this->configs['officail_account_img']));
+		  }?>
+				<?php echo  $this->html->tag('figcaption',["class"=>"figure-caption"],["type"=>"text","pk"=>'officail_account_name',"name"=>"officail_account_name","url"=>"updateConfig"], $this->configs['officail_account_name']);?>
+			</figure>
+	</div>
+  </div>
+</div>
+
+<div class="container py-4 d-none  d-sm-block">
+  <div class="copyright">
+	&copy; Copyright <strong>
+		<?php echo  $this->html->tag('span',[],["type"=>"text","pk"=>'copyright',"name"=>"copyright","url"=>"updateConfig"], $this->configs['copyright']);?>
+		</strong> 版权所有 
+  </div>
+  <?php echo  $this->html->tag('div',["class"=>"credits"],["type"=>"text","pk"=>'icp_number',"name"=>"icp_number","url"=>"updateConfig"], $this->configs['icp_number']);?>
+</div>
+</footer><!-- End Footer -->

@@ -1,0 +1,32 @@
+<!-- ======= Details Section ======= -->
+<section id="<?php echo $this->block['code'];?>" class="op-features-02">
+  <div class="container">
+    <?php echo  $this->html->editButton(["type"=>"list-update-block","table"=>"blocks","id"=>$this->block['id']]);?>
+		<div class="row pt-5">
+		<?php 
+      	echo  $this->html->editButton(["type"=>"list","table"=>"nodes","where"=>$this->block['id']]);?>
+
+		<?php
+		foreach($this->block['nodes'] as $k=>$v){
+
+			?>
+			<div class="row content" id="<?php echo $v['code'];?>">
+			  <div class="col-md-4 <?php echo ($k%2==1)?"order-1 order-md-2":"";?>" data-aos="fade-<?php echo !($k%2==1)?"left":"right";?>">
+				<img src="<?php echo $v['img'];?>" class="img-fluid" alt="">
+			  </div>
+			  <div class="col-md-8 pt-4 <?php echo ($k%2==1)?"order-2 order-md-1":"";?>" data-aos="fade-up">
+				<h3><?php echo $v['title'];?></h3>
+				<?php echo $v['description'];?>
+			  </div>
+			  <?php 
+			  if($v['link']!=""){?>
+			  <div class="section-footer" data-aos="fade-up" >
+				<a class="<?php echo $v['link_class'];?>"  target="<?php echo $v['link_target'];?>" href="<?php echo $v['link'];?>"><i class='bx bx-<?php echo $v['link_icon'];?>'></i><?php echo $v['link_name'];?></a>
+			  </div>
+			  <?php }?>
+			</div>
+		<?php }?>
+		
+		</div>
+  </div>
+</section><!-- End Details Section -->

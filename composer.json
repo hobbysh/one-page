@@ -1,0 +1,22 @@
+{
+    "name": "hobbysh/One-Page",
+    "description": "One-Page基于Yaf扩展搭建一页网页展示系统-支持微服务部署|可视化编辑|多模板",
+    "keywords": [
+        "One-Page",
+        "Yaf",
+        "bootstrap",
+        "微服务",
+        "可视化编辑",
+    ],
+    "homepage": "https://one-page.cc",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "hobbysh",
+            "email": "2021293@qq.com"
+        }
+    ],
+    "require": {
+        "catfan/medoo": "^2.1"
+    }
+}

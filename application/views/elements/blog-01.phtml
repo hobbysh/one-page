@@ -1,0 +1,27 @@
+<!-- ======= Recent Blog Posts Section ======= -->
+<section id="<?php echo $this->block['code'];?>" class="op-blog-01">
+	<div class="container" data-aos="fade-up" >
+	<?php echo  $this->html->editButton(["type"=>"list-update-block","table"=>"blocks","id"=>$this->block['id']]);?>
+	<div class="section-title">
+		<?php echo  $this->html->tag('h2',["style"=>"color:#e26161"],["type"=>"text","pk"=>$this->block['id'],"name"=>"title","url"=>"updateField/table/blocks"],$this->block['title']);?>
+
+	</div>
+<?php 
+	    	echo  $this->html->editButton(["type"=>"list","table"=>"nodes","where"=>$this->block['id']]);?>
+	<div class="row gy-5">
+		<?php
+		foreach($this->block['nodes'] as $k=>$v){?>
+		<div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+			<div class="post-box">
+			  <div class="post-img"><img src="<?php echo $v['img'];?>" class="img-fluid img-thumbnail" alt=""></div>
+			  <h3 class="post-title"><?php echo $v['title'];?></h3>
+			  <p><?php echo $v['description'];?></p>
+			  <a href="<?php echo $v['link'];?>" class="readmore stretched-link glightbox">
+				  <span><?php echo $v['link_name'];?></span><i class="bi bi-<?php echo $v['link_icon'];?>"></i></a>
+			</div>
+		</div>
+		<?php }?>
+	</div>
+
+	</div>
+</section><!-- End Recent Blog Posts Section -->

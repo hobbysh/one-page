@@ -1,0 +1,38 @@
+<!-- ======= Testimonials Section ======= -->
+<section id="<?php echo $this->block['code'];?>" class="op-testimonials-01 section-bg">
+  <div class="container" data-aos="fade-up">
+	    <?php echo  $this->html->editButton(["type"=>"list-update-block","table"=>"blocks","id"=>$this->block['id']]);?>
+    <div class="section-title">
+	<?php echo  $this->html->tag('h2',[],["type"=>"text","pk"=>$this->block['id'],"name"=>"title","url"=>"updateField/table/blocks"],$this->block['title']);?>
+	 <?php echo  $this->html->tag('p',[],["type"=>"textarea","pk"=>$this->block['id'],"name"=>"description","url"=>"updateField/table/blocks"],$this->block['description']);?>
+    </div>
+	    	<?php 
+  	echo  $this->html->editButton(["type"=>"list","table"=>"nodes","where"=>$this->block['id']]);?>
+    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="swiper-wrapper">
+		<?php
+		foreach($this->block['nodes'] as $k=>$v){?>
+			<div class="swiper-slide">
+			  <div class="testimonial-item">
+				<img src="<?php echo $v['img'];?>" class="testimonial-img" alt="">
+				<h3><?php echo $v['title'];?></h3>
+				<h4><?php echo $v['created'];?></h4>
+				<p>
+				  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+				  <?php echo $v['description'];?>				
+				  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+				</p>
+			  </div>
+			</div>
+		<?php }?>
+
+
+        
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section><!-- End Testimonials Section -->

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><?php echo $this->configs['title'];?></title>
+  <meta content="<?php echo $this->configs['meta_description'];?>" name="description">
+  <meta content="<?php echo $this->configs['meta_keywords'];?>" name="keywords">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="<?php echo $this->configs['icon'];?>">
+  <link href="<?php echo $this->configs['icon'];?>" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap@5.2.0/dist//css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/glightbox@3.2.0/dist/css/glightbox.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/swiper@8.3.1/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+
+<?php 
+$this->display('elements/header.phtml');
+?>
+
+<?php 
+foreach($this->blocks as $k=>$v){
+	$this->block = $v;
+	$this->display('elements/'.$v['view'].'.phtml');
+}
+?>
+<?php 
+$this->display('elements/footer.phtml');
+?>
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://unpkg.com/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
+<script src="https://unpkg.com/swiper@8.3.1/swiper-bundle.min.js"></script>
+
+<?php if($this->mode =="admin"){?>
+<script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/x-editable-bs4@1.5.5/dist/bootstrap5-editable/js/bootstrap-editable.min.js"></script>
+<link href="https://unpkg.com/x-editable-bs4@1.5.5/dist/bootstrap5-editable/css/bootstrap-editable.css" rel="stylesheet">
+<script src="https://unpkg.com/sortablejs-make@1.0.1/Sortable.min.js"></script>
+<script src="https://unpkg.com/jquery-sortablejs@1.0.1/jquery-sortable.js"></script>
+
+<script >
+ 	  $(function(){
+	  	$('.editable').editable();
+
+	  	$('.editableimg').editable({
+				validate: function(value) {
+
+					var index= $.trim(value).lastIndexOf(".");
+					var ext = value.substr(index+1);
+
+					if( ['png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'svg'].indexOf(ext.toLowerCase()) === -1 ) {
+				        return '输入的不是图片';
+				    }
+				},
+
+	  		success: function(response, newValue) {
+	  			console.log(this,response,newValue);
+	  			this.src=newValue;
+				   // if(!response.success) return response.msg;
+				}
+	  	});
+
+	  		    //buttons
+
+	  	$.fn.editableform.buttons = 
+      '<button type="submit" class="btn btn-primary btn-sm editable-submit">'+
+        '<i class="bi bi-check" aria-hidden="true"></i>'+
+      '</button>'+
+      '<button type="button" class="btn btn-outline-secondary btn-sm editable-cancel">'+
+        '<i class="bi bi-x" aria-hidden="true"></i>'+
+      '</button>';
+	  });
+
+</script>
+<?php }?>
+<script src="/assets/js/main.js"></script>
+<?php if( $this->configs['wechat_share']=="1"){?>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script>
+	(function() {
+		var url='<?php echo $this->configs['wechat_share_api'];?>';
+		const updateAppMessageShareData = { 
+					title: '<?php echo $this->configs['wxm_title'];?>', // 分享标题
+					desc: '<?php echo $this->configs['wxm_desc'];?>', // 分享描述
+					link: '<?php echo $this->configs['wxm_link'];?>', // 分享链接，该链接域名或路径必须与当前页面对应的公众号 JS 安全域名一致
+					imgUrl: '<?php echo $this->configs['wxm_imgUrl'];?>', // 分享图标
+
+				  }
+		const updateTimelineShareData = { 
+					  title: '<?php echo $this->configs['wxt_title'];?>', // 分享标题
+					  link: '<?php echo $this->configs['wxt_link'];?>', // 分享链接，该链接域名或路径必须与当前页面对应的公众号 JS 安全域名一致
+					  imgUrl: '<?php echo $this->configs['wxt_imgUrl'];?>', // 分享图标
+					}
+
+		setWxShareData(url,updateAppMessageShareData,updateTimelineShareData);
+	});
+</script>
+<?php }?>
+
+<?php if($this->configs['tongji_js']!=''){?>
+<script><?php echo $this->configs['tongji_js'];?></script>
+<?php } ?>
+
+</body></html>

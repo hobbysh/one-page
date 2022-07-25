@@ -1,0 +1,26 @@
+<!-- ======= Hero Section ======= -->
+<section id="<?php echo $this->block['code'];?>" class="op-hero-01 d-flex align-items-center">
+
+  <div class="container">
+    <?php echo  $this->html->editButton(["type"=>"list-update-block","table"=>"blocks","id"=>$this->block['id']]);?>
+    <div class="row">
+      <div class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1" data-aos="fade-up">
+        <div>
+          <?php echo  $this->html->tag('h1',[],["type"=>"text","pk"=>$this->block['id'],"name"=>"title","url"=>"updateField/table/blocks"],$this->block['title']);?>
+          <?php echo  $this->html->tag('h2',[],["type"=>"textarea","pk"=>$this->block['id'],"name"=>"description","url"=>"updateField/table/blocks"],$this->block['description']);?>
+          
+        </div>
+      </div>
+      <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img" data-aos="fade-up">
+        <?php 
+        echo  $this->html->tag('img',
+          ["src"=>$this->block['img'],"class"=>"img-fluid","alt"=>$this->block['img_alt']],
+          ["type"=>"text","pk"=>$this->block['id'],"name"=>"img","url"=>"updateField/table/blocks","value"=>$this->block['img']],
+          $this->block['title']);
+        ?>
+        
+      </div>
+    </div>
+  </div>
+
+</section><!-- End Hero -->

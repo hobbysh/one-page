@@ -1,39 +1,58 @@
 # One-Page
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+### 前言
 
-#### 软件架构
-软件架构说明
+基于PHP Yaf的MVC扩展框架搭建一页网页制作展示系统，支持微服务部署、可视化编辑、多模板，可快速生成一页网页。
 
+### 描述
 
-#### 安装教程
+基本yaf的一款PHP快速开发框架
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+### 技术
 
-#### 使用说明
+php yaf mysql
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-8892BF.svg)](http://www.php.net/)
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+### 模块目录
 
-#### 参与贡献
+* server，docker服务器配置文件
+* application，项目主要目录，开发主要在这里
+* conf，服务器配置
+* asset，js/css 文件
+* vendor，第三方插件
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+* application/controllers/ 控制器
+* application/views/ 视图层
+* application/views/ 视图层
+* application/library/ 扩展库
 
 
-#### 特技
+### 安装
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+```shell
+docker build -t onepage .
+
+docker run --name onepage -itd  \
+    -v `pwd`/:/var/www/html \
+    -v `pwd`/server/php/fpm/php.ini:/etc/php/8.1/fpm/php.ini \
+    -v `pwd`/server/nginx/nginx.conf:/etc/nginx/nginx.conf \
+    -v `pwd`/server/nginx/sites-enabled/:/etc/nginx/sites-enabled \
+    -p 80:80 \
+    -p 3306:3306 \
+    onepage
+```
+
+### 使用
+
+* 访问 http://127.0.0.1
+* 管理模式 http://127.0.0.1/?mode=admin
+
+
+### 官网
+
+[一页网页](https://one-page.cc/)
+<https://one-page.cc/>
+
+### 支持
+
+Hobby 2021293@qq.com

@@ -1,0 +1,42 @@
+<!-- ======= App Features Section ======= -->
+<section id="<?php echo $this->block['code'];?>" class="op-features-01">
+  <div class="container">
+    <?php echo  $this->html->editButton(["type"=>"list-update-block","table"=>"blocks","id"=>$this->block['id']]);?>
+	<div class="section-title">
+		<?php echo  $this->html->tag('h2',["style"=>"color:#e26161"],["type"=>"text","pk"=>$this->block['id'],"name"=>"title","url"=>"updateField/table/blocks"],$this->block['title']);?>
+		 <?php echo  $this->html->tag('p',[],["type"=>"textarea","pk"=>$this->block['id'],"name"=>"description","url"=>"updateField/table/blocks"],$this->block['description']);?>
+	</div>
+	
+	<div class="row no-gutters">
+	  <div class="col-xl-7 d-flex align-items-stretch order-2 order-lg-1">
+		<div class="content d-flex flex-column justify-content-center">
+			<?php 
+      	echo  $this->html->editButton(["type"=>"list","table"=>"nodes","where"=>$this->block['id']]);?>
+		  <div class="row">
+		  <?php
+			foreach($this->block['nodes'] as $k=>$v){?>
+				<div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="<?php echo $v['delay'];?>">
+				  <i class='bx bx-<?php echo $v['img'];?>'></i>
+				  <h4><?php echo $v['title'];?></h4>
+				  <p><?php echo $v['description'];?></p>
+				</div>
+			<?php }?>
+		  </div>
+		</div>
+	  </div>
+	  <div class="image col-xl-5 d-flex align-items-stretch justify-content-center order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+	  	 <?php 
+        echo  $this->html->tag('img',
+          ["src"=>$this->block['img'],"class"=>"img-fluid rounded img-responsive","alt"=>$this->block['img_alt']],
+          ["type"=>"text","pk"=>$this->block['id'],"name"=>"img","url"=>"updateField/table/blocks","value"=>$this->block['img']],
+          $this->block['title']);
+        ?>
+	  </div>
+	</div>
+
+	<div class="section-footer" data-aos="fade-up"  data-aos-delay="1000">
+		<a class="<?php echo $this->block['link_class'];?>"  target="<?php echo $this->block['link_target'];?>" href="<?php echo $this->block['link_url'];?>" ><i class='bx bx-<?php echo $this->block['link_icon'];?>'></i><?php echo $this->block['link_name'];?></a>
+	</div>
+  </div>
+</section><!-- End App Features Section -->
+	
