@@ -29,17 +29,19 @@ php yaf mysql
 
 ### 安装
 
+* 全新编译
 ```shell
-docker build -t onepage .
+docker build -t hobbysh/one-page .
 
-docker run --name onepage -itd  \
+* 直接部署
+docker run --name one-page -itd  \
     -v `pwd`/:/var/www/html \
     -v `pwd`/server/php/fpm/php.ini:/etc/php/8.1/fpm/php.ini \
     -v `pwd`/server/nginx/nginx.conf:/etc/nginx/nginx.conf \
     -v `pwd`/server/nginx/sites-enabled/:/etc/nginx/sites-enabled \
     -p 80:80 \
     -p 3306:3306 \
-    onepage
+    hobbysh/one-page
 ```
 
 ### 使用

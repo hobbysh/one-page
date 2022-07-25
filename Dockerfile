@@ -43,7 +43,7 @@ RUN curl -sS https://install.phpcomposer.com/installer | php && \
 	composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 ADD server/mysql.sh /root/
-ADD install.sql /root/
+ADD server/install.sql /root/
 RUN chmod +x /root/mysql.sh
 RUN /root/mysql.sh
 
